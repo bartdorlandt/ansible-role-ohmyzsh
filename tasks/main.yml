@@ -41,14 +41,14 @@
     state: directory
     mode: "0755"
   tags: poetry
-  when: poetry_plugin is defined
+  when: poetry_plugin is true
 
 - name: Install Poetry for oh-my-zsh
   ansible.builtin.shell: ~/.local/bin/poetry completions zsh > {{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/poetry/_poetry
   args:
     creates: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/poetry/_poetry"
   tags: poetry
-  when: poetry_plugin is defined
+  when: poetry_plugin is true
 
 - name: Git pull fzf
   ansible.builtin.git:
@@ -57,14 +57,14 @@
     depth: 1
     update: true
   tags: fzf
-  when: fzf_plugin is defined
+  when: fzf_plugin is true
 
 - name: Install fzf
   ansible.builtin.command: "{{ ansible_env.HOME }}/git/fzf/install --all"
   args:
     creates: "{{ ansible_env.HOME }}/.fzf.zsh"
   tags: fzf
-  when: fzf_plugin is defined
+  when: fzf_plugin is true
 
 - name: Create the .zshrc_local
   when: ohmyzsh_plugins is defined
