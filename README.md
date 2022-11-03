@@ -30,6 +30,13 @@ None
                 - ohmyzsh
           tags: ohmyzsh
 
+or:
+
+    - hosts: localhost
+      roles:
+        - { role: bartdorlandt.ohmyzsh }
+
+
 ## License
 
 MIT/BSD
