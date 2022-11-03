@@ -1,0 +1,5 @@
+---
+# defaults file for bartdorlandt.ohmyzsh
+ohmyzsh_plugins: "git zsh-autosuggestions zsh-syntax-highlighting"
+poetry_plugin: true
+fzf_plugin: true

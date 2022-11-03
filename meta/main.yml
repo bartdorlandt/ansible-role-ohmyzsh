@@ -1,0 +1,23 @@
+---
+dependencies: []
+
+galaxy_info:
+  author: bartdorlandt
+  description: ohmyzsh installation and setup
+  license: license (BSD, MIT)
+  min_ansible_version: "2.2"
+  platforms:
+    - name: GenericUNIX
+      versions:
+        - all
+    - name: GenericBSD
+      versions:
+        - all
+    - name: GenericLinux
+      versions:
+        - all
+  galaxy_tags:
+    - development
+    - system
+    - configuration
+    - shell
