@@ -3,6 +3,7 @@ dependencies: []
 
 galaxy_info:
   author: bartdorlandt
+  role_name: ohmyzsh
   description: ohmyzsh installation and setup
   license: license (BSD, MIT)
   min_ansible_version: "2.2"
