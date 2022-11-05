@@ -13,13 +13,7 @@
     mode: "0644"
   loop:
     - bart.zsh-theme
-  become: false
-
-- name: Git pull virtualenv-autodetect
-  ansible.builtin.git:
-    repo: https://github.com/RobertDeRose/virtualenv-autodetect.git
-    dest: "{{ ansible_env.HOME }}/git/virtualenv-autodetect"
-    update: true
+  when: copy_theme_bartdorlandt
 
 - name: Git pull zsh-autosuggestions
   ansible.builtin.git:
@@ -34,37 +28,6 @@
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
     depth: 1
     update: true
-
-- name: Add poetry zsh plugin directory
-  ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/poetry"
-    state: directory
-    mode: "0755"
-  tags: poetry
-  when: poetry_plugin is true
-
-- name: Install Poetry for oh-my-zsh
-  ansible.builtin.shell: ~/.local/bin/poetry completions zsh > {{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/poetry/_poetry
-  args:
-    creates: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/poetry/_poetry"
-  tags: poetry
-  when: poetry_plugin is true
-
-- name: Git pull fzf
-  ansible.builtin.git:
-    repo: https://github.com/junegunn/fzf.git
-    dest: "{{ ansible_env.HOME }}/git/fzf"
-    depth: 1
-    update: true
-  tags: fzf
-  when: fzf_plugin is true
-
-- name: Install fzf
-  ansible.builtin.command: "{{ ansible_env.HOME }}/git/fzf/install --all"
-  args:
-    creates: "{{ ansible_env.HOME }}/.fzf.zsh"
-  tags: fzf
-  when: fzf_plugin is true
 
 - name: Create the .zshrc_local
   when: ohmyzsh_plugins is defined

@@ -2,7 +2,8 @@
 Sets up the ohmyzsh environment with my desired dependencies
 
 ## Requirements
-None
+- zsh should already be installed.
+- No sudo password required
 
 ## Role Variables
 Available variables are listed below, along with default values (see defaults/main.yml):
@@ -11,8 +12,7 @@ Available variables are listed below, along with default values (see defaults/ma
 
 Should these plugins be installed as well?
 
-    poetry_plugin: true
-    fzf_plugin: true
+    copy_theme_bartdorlandt: true
 
 
 ## Dependencies
@@ -25,16 +25,16 @@ None
         - name: Ohmyzsh
           ansible.builtin.include_role:
             name: bartdorlandt.ohmyzsh
-            apply:
-              tags:
-                - ohmyzsh
-          tags: ohmyzsh
 
 or:
 
     - hosts: localhost
       roles:
-        - { role: bartdorlandt.ohmyzsh }
+        - role: bartdorlandt.ohmyzsh
+          vars:
+            use_theme_bart: false
+            ohmyzsh_plugins: "git zsh-autosuggestions zsh-syntax-highlighting poetry debian"
+
 
 
 ## License
