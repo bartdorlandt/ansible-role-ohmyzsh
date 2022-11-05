@@ -1,5 +1,5 @@
 ---
-- name: Ensure Oh My ZSH repo exists
+- name: Ensure Oh My ZSH repo exists # noqa latest[git]
   ansible.builtin.git:
     repo: "https://github.com/ohmyzsh/ohmyzsh.git"
     dest: ~/.oh-my-zsh
@@ -15,14 +15,14 @@
     - bart.zsh-theme
   when: copy_theme_bartdorlandt
 
-- name: Git pull zsh-autosuggestions
+- name: Git pull zsh-autosuggestions # noqa latest[git]
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-autosuggestions.git
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
     depth: 1
     update: true
 
-- name: Git pull zsh-syntax-highlighting
+- name: Git pull zsh-syntax-highlighting # noqa latest[git]
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
