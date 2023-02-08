@@ -12,7 +12,7 @@
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/{{ item }}"
     mode: "0644"
   loop:
-    - bart.zsh-theme
+    - bartdorlandt.zsh-theme
   when: copy_theme_bartdorlandt
 
 - name: Git pull zsh-autosuggestions # noqa latest[git]
