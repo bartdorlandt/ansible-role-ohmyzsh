@@ -42,8 +42,15 @@
         modification_time: preserve
         access_time: preserve
 
-    - name: Fill the .zshrc_local
+    - name: Fill the .zshrc_local for plugins
       ansible.builtin.blockinfile:
         path: "{{ ansible_env.HOME }}/.zshrc_local"
         block: |
           plugins=({{ ohmyzsh_plugins }})
+
+    - name: Fill the .zshrc_local for the theme
+      when: copy_theme_bartdorlandt
+      ansible.builtin.blockinfile:
+        path: "{{ ansible_env.HOME }}/.zshrc_local"
+        block: |
+          ZSH_THEME="bartdorlandt"
