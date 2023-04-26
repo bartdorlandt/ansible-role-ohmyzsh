@@ -21,7 +21,7 @@
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
     depth: 1
     update: true
-  when: git.zsh-autosuggestions
+  when: git.zsh_autosuggestions
 
 - name: Git pull zsh-syntax-highlighting # noqa latest[git]
   ansible.builtin.git:
@@ -29,7 +29,7 @@
     dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
     depth: 1
     update: true
-  when: git.zsh-syntax-highlighting
+  when: git.zsh_syntax_highlighting
 
 - name: Create the .zshrc_local
   when: ohmyzsh_plugins is defined

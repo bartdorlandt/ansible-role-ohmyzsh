@@ -2,6 +2,6 @@
 # defaults file for bartdorlandt.ohmyzsh
 copy_theme_bartdorlandt: true
 git:
-  zsh-autosuggestions: true
-  zsh-syntax-highlighting: true
+  zsh_autosuggestions: true
+  zsh_syntax_highlighting: true
 ohmyzsh_plugins: "git zsh-autosuggestions zsh-syntax-highlighting"
