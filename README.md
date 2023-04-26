@@ -8,9 +8,12 @@ Sets up the ohmyzsh environment with my desired dependencies
 ## Role Variables
 Available variables are listed below, along with default values (see defaults/main.yml):
 
+    git:
+      zsh-autosuggestions: true
+      zsh-syntax-highlighting: true
     ohmyzsh_plugins: "git zsh-autosuggestions zsh-syntax-highlighting"
 
-Should these plugins be installed as well?
+Should this theme be installed as well?
 
     copy_theme_bartdorlandt: true
 
