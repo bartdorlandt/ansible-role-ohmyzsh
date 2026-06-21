@@ -1,32 +1,32 @@
 ---
-- name: Ensure Oh My ZSH repo exists # noqa latest[git]
+- name: Ensure Oh My ZSH repo exists  # noqa latest[git]
   ansible.builtin.git:
     repo: "https://github.com/ohmyzsh/ohmyzsh.git"
-    dest: ~/.oh-my-zsh
+    dest: "{{ ansible_facts['user_dir'] }}/.oh-my-zsh"
     depth: 1
     update: false
 
 - name: Ensure custom oh-my-zsh theme exists
   ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/{{ item }}"
+    dest: "{{ ansible_facts['user_dir'] }}/.oh-my-zsh/custom/themes/{{ item }}"
     mode: "0644"
   loop:
     - bartdorlandt.zsh-theme
   when: copy_theme_bartdorlandt
 
-- name: Git pull zsh-autosuggestions # noqa latest[git]
+- name: Git clone zsh-autosuggestions  # noqa latest[git]
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-autosuggestions.git
-    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+    dest: "{{ ansible_facts['user_dir'] }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
     depth: 1
     update: true
   when: git.zsh_autosuggestions
 
-- name: Git pull zsh-syntax-highlighting # noqa latest[git]
+- name: Git clone zsh-syntax-highlighting  # noqa latest[git]
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+    dest: "{{ ansible_facts['user_dir'] }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
     depth: 1
     update: true
   when: git.zsh_syntax_highlighting
@@ -36,15 +36,15 @@
   block:
     - name: Ensure the .zshrc_local file exists
       ansible.builtin.file:
-        path: "{{ ansible_env.HOME }}/.zshrc_local"
+        path: "{{ ansible_facts['user_dir'] }}/.zshrc_local"
         state: touch
-        mode: 0600
+        mode: "0600"
         modification_time: preserve
         access_time: preserve
 
     - name: Fill the .zshrc_local for plugins
       ansible.builtin.blockinfile:
         marker: "# {mark} ANSIBLE MANAGED BLOCK - ohmyzsh plugins"
-        path: "{{ ansible_env.HOME }}/.zshrc_local"
+        path: "{{ ansible_facts['user_dir'] }}/.zshrc_local"
         block: |
           plugins=({{ ohmyzsh_plugins }})
