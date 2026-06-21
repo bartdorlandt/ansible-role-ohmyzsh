@@ -3,7 +3,13 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Install git
-      ansible.builtin.package:
-        name: git
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Install packages
+      ansible.builtin.apt:
+        name:
+          - git
+          - zsh
         state: present
