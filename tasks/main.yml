@@ -15,7 +15,7 @@
     - bartdorlandt.zsh-theme
   when: copy_theme_bartdorlandt
 
-- name: Git clone zsh-autosuggestions  # noqa latest[git]
+- name: Git clone zsh-autosuggestions  # noqa: latest[git]
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-autosuggestions.git
     dest: "{{ ansible_facts['user_dir'] }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
@@ -23,7 +23,7 @@
     update: true
   when: git.zsh_autosuggestions
 
-- name: Git clone zsh-syntax-highlighting  # noqa latest[git]
+- name: Git clone zsh-syntax-highlighting  # noqa: latest[git]
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
     dest: "{{ ansible_facts['user_dir'] }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
